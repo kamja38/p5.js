@@ -1,0 +1,164 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f4f1ea; 
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1vh; 
+}
+
+header {
+  text-align: center;
+  height: 6vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: 'Gaegu', cursive;
+  font-size: 2.5vh; 
+  color: #4a3e3d;
+}
+
+main {
+  height: 90vh; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 3vh 5vw; 
+  width: 100%;
+  max-width: calc((90vh - 3vh) * 1.5); 
+  margin: 0 auto;
+  position: relative;
+  padding: 2vh 2vw;
+}
+
+main::before {
+  content: '';
+  position: absolute;
+  top: 25%; 
+  left: 5%;
+  width: 90%;
+  height: 2px;
+  background: #555;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+main::after {
+  content: '';
+  position: absolute;
+  top: 75%; 
+  left: 5%;
+  width: 90%;
+  height: 2px;
+  background: #555;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.cell {
+  background: #ffffff;
+  padding: 1vh 1vh 4vh 1vh; 
+  border-radius: 2px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cell:hover {
+  transform: scale(1.03) rotate(0deg) !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.task-1 { transform: rotate(-1deg); }
+.task-4 { transform: rotate(0.8deg); }
+.task-2 { transform: rotate(0.6deg); }
+.task-3 { transform: rotate(-1deg); }
+
+.cell::before {
+  content: '';
+  position: absolute;
+  top: -1vh;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 6vh;
+  height: 1.8vh;
+  background: #dcd7bd; 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.cell::after {
+  font-family: 'Gaegu', cursive;
+  position: absolute;
+  bottom: 0.8vh;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 1.4vh; 
+  font-weight: bold;
+  color: #555;
+}
+.task-1::after { content: "Project 01 : 추상화 그리기"; }
+.task-4::after { content: "Project 04 : 추상화에 시간에 따른 움직임 넣기"; }
+.task-2::after { content: "Project 02 : 캐릭터 그리기"; }
+.task-3::after { content: "Project 03 : 캐릭터에 움직임 넣기 \A(마우스를 클릭하거나 c키를 눌러보세요!)"; }
+
+.iframe-wrapper {
+  container-type: inline-size; 
+  width: 100%;
+  aspect-ratio: 3 / 2; 
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #f0f0f0;
+  background: #fafafa;
+}
+
+.iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 400px;
+  border: none;
+  background: white;
+  transform-origin: top left;
+  transform: scale(calc(100cqw / 600px)); 
+}
+
+.flow-arrow {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  font-family: 'Gaegu', cursive;
+  font-size: 2.5vh; 
+  color: #bf4f41; 
+  background: #f4f1ea;
+  padding: 0 0.5vw;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: pulse 2s infinite;
+}
+
+.arrow-top { top: 25%; }
+.arrow-bottom { top: 75%; }
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
